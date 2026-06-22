@@ -2,7 +2,7 @@
 
 ## Bash
 
-Bash-скрипт, который получает информацию о GitHub пользователе и добавляет запись в HTML-таблицу на вашем веб-сервере (например, Nginx). Каждый запуск дописывает новую строку в журнал статистики.
+Bash-скрипт, который получает информацию о GitHub пользователе и добавляет запись в HTML. Каждый запуск дописывает новую строку в журнал статистики
 
 ---
 
@@ -16,7 +16,7 @@ Bash-скрипт, который получает информацию о GitHu
 
 Затем он дописывает новую строку в HTML-таблицу, расположенную по умолчанию в `/var/www/html/index.html`.
 
-Если файла не существует — скрипт создаёт его с базовой HTML-структурой.
+Если файла не существует - скрипт создаёт его с базовой HTML-структурой
 
 ---
 
@@ -35,24 +35,11 @@ Bash-скрипт, который получает информацию о GitHu
 
 ## Ключевые особенности
 
-- 📈 Постепенное накопление записей — журнал статистики растёт со временем
+- 📈 Постепенное накопление записей - журнал статистики растёт со временем
 - 🧾 Логирование в HTML таблицу
 - 🔄 Поддержка cron (автоматический запуск раз в минуту)
 - 🌐 Вывод доступен через Nginx
 - ⚡ Используется GitHub API без ключа
-
----
-
-## Требования
-
-- Bash 4.4+
-- Утилиты:
-  - curl
-  - jq
-  - sed
-  - mktemp
-  - date
-- (опционально) Nginx или любой другой веб-сервер
 
 ---
 
@@ -61,7 +48,15 @@ Bash-скрипт, который получает информацию о GitHu
 ### Ubuntu / Debian:
 
 ```bash
-sudo apt update
-sudo apt install -y nginx jq curl cron git
-sudo systemctl enable --now nginx
-sudo systemctl enable --now cron
+sudo apt update && sudo apt upgrade -y
+sudo apt install nginx
+sudo apt install openssh-server
+sudo systemctl enable ssh
+sudo systemctl start ssh
+sudo systemctl status ssh
+ssh-keygen -t ed25519 -C "your_email@example.com" Дальше просто жми Enter на все вопросы:
+cat ~/.ssh/id_ed25519.pub
+ ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI... your_email@example.com это скопировать на гитхаб
+apt install curl
+apt install git
+apt install jq
